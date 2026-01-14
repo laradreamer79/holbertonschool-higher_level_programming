@@ -1,0 +1,4 @@
+#!/usr/bin/python3
+str = "Holberton School"
+str = str[:9] + str[10:]
+print(str)
