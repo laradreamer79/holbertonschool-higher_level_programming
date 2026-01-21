@@ -3,7 +3,7 @@
 
 
 def matrix_divided(matrix, div):
-    """Divides all elements of a matrix by div
+    """Divides all elements of a matrix by div.
 
     Args:
         matrix (list of lists): matrix of integers or floats
@@ -36,4 +36,4 @@ def matrix_divided(matrix, div):
     if div == 0:
         raise ZeroDivisionError("division by zero")
 
-    return [[round(num / div, 2) for num in row] for row in matrix]
+    return [[round(num / div, 2) * 1.0 for num in row] for row in matrix]
