@@ -1,28 +1,26 @@
-The ``5-text_indentation.py`` module
-==================================
-
-Using ``text_indentation``
--------------------------
-
 >>> text_indentation = __import__('5-text_indentation').text_indentation
 
->>> text_indentation("Hello. World?")
-Hello.
-<BLANKLINE>
-World?
-<BLANKLINE>
+>>> text_indentation("Holberton School")
+Holberton School
 
->>> text_indentation("This is great: really great.")
-This is great:
+>>> text_indentation("Holberton.School")
+Holberton.
 <BLANKLINE>
-really great.
+School
+
+>>> text_indentation("Holberton. School? How are you: John")
+Holberton.
 <BLANKLINE>
+School?
+<BLANKLINE>
+How are you:
+<BLANKLINE>
+John
 
->>> text_indentation("No indentation here")
-No indentation here
+>>> text_indentation(12)
+Traceback (most recent call last):
+TypeError: text must be a string
 
->>> text_indentation("")
- 
->>> text_indentation(123)
+>>> text_indentation()
 Traceback (most recent call last):
 TypeError: text must be a string
