@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """Defines a function that divides all elements of a matrix."""
+import math
 
 
 def matrix_divided(matrix, div):
@@ -39,5 +40,7 @@ def matrix_divided(matrix, div):
 
     if div == 0:
         raise ZeroDivisionError("division by zero")
+    if isinstance(div, float) and math.isnan(div):
+    return [[0.0 for _ in row] for row in matrix]
 
     return [[round(x / div, 2) for x in row] for row in matrix]
