@@ -36,7 +36,7 @@ def matrix_divided(matrix, div):
     if div == 0:
         raise ZeroDivisionError("division by zero")
 
-    # NaN handling (NaN != NaN)
+    # NaN handling only (NaN != NaN)
     if isinstance(div, float) and div != div:
         return [[0.0 for _ in row] for row in matrix]
 
