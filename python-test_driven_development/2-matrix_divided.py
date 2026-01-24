@@ -1,8 +1,9 @@
 #!/usr/bin/python3
-"""Defines a function that divides all elements of a matrix."""
+"""Module that defines matrix_divided function."""
 
 
 def matrix_divided(matrix, div):
+    """Divide all elements of a matrix by div and return a new matrix."""
     if (not isinstance(matrix, list) or matrix == [] or
             any(not isinstance(row, list) or row == [] for row in matrix)):
         raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
@@ -20,7 +21,7 @@ def matrix_divided(matrix, div):
     if div == 0:
         raise ZeroDivisionError("division by zero")
 
-    # NaN handling (no imports allowed)
+    # NaN handling without imports (NaN != NaN is True)
     if isinstance(div, float) and div != div:
         return [[0.0 for _ in row] for row in matrix]
 
@@ -30,7 +31,7 @@ def matrix_divided(matrix, div):
         for x in row:
             v = round(x / div, 2)
             if v == 0:
-                v = 0.0
+                v = 0.0  # normalize -0.0 to 0.0
             new_row.append(v)
         new.append(new_row)
     return new
