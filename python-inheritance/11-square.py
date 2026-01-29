@@ -1,23 +1,28 @@
 #!/usr/bin/python3
 """
-Defines a MyInt class that inverts the behavior of equality operators.
+Defines a Square class that inherits from BaseGeometry.
 """
 
+BaseGeometry = __import__('7-base_geometry').BaseGeometry
 
-class MyInt(int):
+
+class Square(BaseGeometry):
     """
-    MyInt is a subclass of int that inverts the behavior of
-    the == and != operators.
+    Represents a square using size validated by BaseGeometry.
     """
 
-    def __eq__(self, other):
+    def __init__(self, size):
         """
-        Invert equality operator (== behaves like !=).
-        """
-        return super().__ne__(other)
+        Initialize a Square instance.
 
-    def __ne__(self, other):
+        Args:
+            size (int): The size of the square.
         """
-        Invert inequality operator (!= behaves like ==).
+        self.integer_validator("size", size)
+        self.__size = size
+
+    def area(self):
         """
-        return super().__eq__(other)
+        Return the area of the square.
+        """
+        return self.__size ** 2
