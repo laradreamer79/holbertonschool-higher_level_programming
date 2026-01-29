@@ -1,14 +1,23 @@
 #!/usr/bin/python3
-"""Defines a MyInt class that inverts equality operators."""
+"""
+Defines a MyInt class that inverts the behavior of equality operators.
+"""
 
 
 class MyInt(int):
-    """MyInt class that inverts == and != operators."""
+    """
+    MyInt is a subclass of int that inverts the behavior of
+    the == and != operators.
+    """
 
     def __eq__(self, other):
-        """Invert equality: == behaves like !="""
+        """
+        Invert equality operator (== behaves like !=).
+        """
         return super().__ne__(other)
 
     def __ne__(self, other):
-        """Invert inequality: != behaves like =="""
+        """
+        Invert inequality operator (!= behaves like ==).
+        """
         return super().__eq__(other)
