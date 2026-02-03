@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Returns a list of lists representing Pascal's triangle."""
 
+
 def pascal_triangle(n):
     """Returns a list of lists representing Pascal's triangle."""
     if n <= 0:
