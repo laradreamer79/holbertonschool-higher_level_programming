@@ -1,16 +1,37 @@
 #!/usr/bin/env python3
-"""Pickle serialization module for saving and loading Python objects."""
+"""Module for pickling custom Python objects."""
 
 import pickle
 
 
-def serialize_and_save_to_file(data, filename):
-    """Serialize a Python object and save it to a pickle file."""
-    with open(filename, mode="wb") as f:
-        pickle.dump(data, f)
+class CustomObject:
+    """Represents a custom object for serialization."""
 
+    def __init__(self, name, age, is_student):
+        """Initialize the CustomObject."""
+        self.name = name
+        self.age = age
+        self.is_student = is_student
 
-def load_and_deserialize(filename):
-    """Load a pickle file and return the deserialized Python object."""
-    with open(filename, mode="rb") as f:
-        return pickle.load(f)
+    def display(self):
+        """Display the object's attributes."""
+        print(f"Name: {self.name}")
+        print(f"Age: {self.age}")
+        print(f"Is Student: {self.is_student}")
+
+    def serialize(self, filename):
+        """Serialize the object to a file."""
+        try:
+            with open(filename, "wb") as f:
+                pickle.dump(self, f)
+        except Exception:
+            return None
+
+    @classmethod
+    def deserialize(cls, filename):
+        """Deserialize an object from a file."""
+        try:
+            with open(filename, "rb") as f:
+                return pickle.load(f)
+        except Exception:
+            return None
