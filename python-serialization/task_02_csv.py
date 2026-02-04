@@ -1,56 +1,29 @@
 #!/usr/bin/env python3
-"""CSV serialization and deserialization helpers."""
+"""Convert CSV data to JSON format."""
 
 import csv
+import json
 
 
-def serialize_to_csv(data, filename):
+def convert_csv_to_json(csv_filename):
     """
-    Serialize data to a CSV file.
-
-    data can be:
-    - a list of dictionaries (recommended)
-    - a single dictionary
-    Returns True on success, None on failure.
+    Convert CSV file data to JSON format and save it to data.json.
+    Returns True on success, False on failure.
     """
     try:
-        rows = data if isinstance(data, list) else [data]
-        if not rows:
-            with open(filename, "w", newline="", encoding="utf-8") as f:
-                pass
-            return True
+        data = []
 
-        if not all(isinstance(r, dict) for r in rows):
-            return None
+        # Read CSV file
+        with open(csv_filename, mode="r", encoding="utf-8") as csv_file:
+            reader = csv.DictReader(csv_file)
+            for row in reader:
+                data.append(row)
 
-        fieldnames = []
-        seen = set()
-        for row in rows:
-            for key in row.keys():
-                if key not in seen:
-                    seen.add(key)
-                    fieldnames.append(key)
+        # Write JSON file
+        with open("data.json", mode="w", encoding="utf-8") as json_file:
+            json.dump(data, json_file, indent=4)
 
-        with open(filename, "w", newline="", encoding="utf-8") as f:
-            writer = csv.DictWriter(f, fieldnames=fieldnames)
-            writer.writeheader()
-            writer.writerows(rows)
         return True
+
     except Exception:
-        return None
-
-
-def load_from_csv(filename):
-    """
-    Load data from a CSV file and return it.
-
-    Returns:
-    - list of dictionaries on success
-    - None on failure
-    """
-    try:
-        with open(filename, "r", newline="", encoding="utf-8") as f:
-            reader = csv.DictReader(f)
-            return [dict(row) for row in reader]
-    except Exception:
-        return None
+        return False
