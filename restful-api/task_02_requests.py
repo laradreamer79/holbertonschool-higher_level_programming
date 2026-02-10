@@ -4,12 +4,12 @@ import requests
 import csv
 '''Fetch and process posts from JSONPlaceholder API '''
 
-requests.get"(https://jsonplaceholder.typicode.com/posts")
+requests.get("https://jsonplaceholder.typicode.com/posts")
 
 
 def fetch_and_print_posts():
     """Fetch posts from JSONPlaceholder and print titles"""
-    r = requests.get(https://jsonplaceholder.typicode.com/posts)
+    r = requests.get("https://jsonplaceholder.typicode.com/posts")
 
     print(f"Status Code: {r.status_code}")
 
@@ -36,7 +36,7 @@ def fetch_and_save_posts():
              for post in posts
                             ]
 
-        with open("posts.csv", "w", newline="", encoding="utf-8" as csv file):
+        with open("posts.csv", "w", newline="", encoding="utf-8") as csvfile:
             fieldnames = ["id", "title", "body"]
             writer = csv.Dictwriter(csvfile, fieldnames=fieldnames)
 
