@@ -7,7 +7,6 @@ from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
-# NOTE: Keep this empty to avoid checker issues (no testing data pushed)
 users = {}
 
 
