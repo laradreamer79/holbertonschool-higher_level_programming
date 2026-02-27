@@ -2,8 +2,8 @@
 """
 2-my_filter_states.py
 
-Lists states matching the given name (safe from SQL injection).
-Results are sorted by states.id in ascending order.
+Displays all values in the states table where name matches
+the argument passed.
 """
 import MySQLdb
 import sys
@@ -24,10 +24,9 @@ if __name__ == "__main__":
     )
 
     cursor = db.cursor()
-    cursor.execute(
-        "SELECT id, name FROM states WHERE name = %s ORDER BY id ASC",
-        (state_name,)
-    )
+
+    query = "SELECT id, name FROM states WHERE name = '{}' ORDER BY id ASC".format(state_name)
+    cursor.execute(query)
 
     for row in cursor.fetchall():
         print(row)
