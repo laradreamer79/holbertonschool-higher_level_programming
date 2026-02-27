@@ -8,6 +8,7 @@ Results are sorted by states.id in ascending order.
 import MySQLdb
 import sys
 
+
 if __name__ == "__main__":
     username = sys.argv[1]
     password = sys.argv[2]
@@ -24,9 +25,8 @@ if __name__ == "__main__":
     cursor = db.cursor()
     cursor.execute("SELECT * FROM states ORDER BY id ASC")
 
-        for row in cursor.fetchall():
+    for row in cursor.fetchall():
         print(row)
-
 
     cursor.close()
     db.close()
