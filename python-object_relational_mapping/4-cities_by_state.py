@@ -2,8 +2,8 @@
 """
 4-cities_by_state.py
 
-Lists all cities of a given state.
-Safe from MySQL injections.
+Lists all cities from the database with their state name.
+Results are sorted by cities.id in ascending order.
 """
 import MySQLdb
 import sys
@@ -13,7 +13,6 @@ if __name__ == "__main__":
     username = sys.argv[1]
     password = sys.argv[2]
     database = sys.argv[3]
-    state_name = sys.argv[4]
 
     db = MySQLdb.connect(
         host="localhost",
@@ -26,17 +25,15 @@ if __name__ == "__main__":
     cursor = db.cursor()
     cursor.execute(
         """
-        SELECT cities.name
+        SELECT cities.id, cities.name, states.name
         FROM cities
         JOIN states ON cities.state_id = states.id
-        WHERE states.name = %s
         ORDER BY cities.id ASC
-        """,
-        (state_name,)
+        """
     )
 
-    cities = cursor.fetchall()
-    print(", ".join(city[0] for city in cities))
+    for row in cursor.fetchall():
+        print(row)
 
     cursor.close()
     db.close()
