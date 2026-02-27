@@ -1,4 +1,10 @@
 #!/usr/bin/python3
+"""
+0-select_states.py
+
+Lists all states from the database passed as an argument.
+Results are sorted by states.id in ascending order.
+"""
 import MySQLdb
 import sys
 
@@ -8,8 +14,8 @@ if __name__ == "__main__":
     database = sys.argv[3]
 
     db = MySQLdb.connect(
-        host="127.0.0.1",
-        port=3307,
+        host="localhost",
+        port=3306,
         user=username,
         passwd=password,
         db=database
