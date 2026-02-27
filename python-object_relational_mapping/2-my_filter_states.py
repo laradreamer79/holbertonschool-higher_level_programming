@@ -3,10 +3,11 @@
 2-my_filter_states.py
 
 Displays all values in the states table where name matches
-the argument passed (case-sensitive).
+the argument passed.
 """
 import MySQLdb
 import sys
+
 
 if __name__ == "__main__":
     username = sys.argv[1]
@@ -24,15 +25,16 @@ if __name__ == "__main__":
 
     cursor = db.cursor()
 
-    query = "SELECT id, name FROM states WHERE BINARY name = %s ORDER BY id ASC"
-    cursor.execute(query, (state_name,))
+    query = (
+        "SELECT id, name FROM states "
+        "WHERE name = '{}' "
+        "ORDER BY id ASC"
+    ).format(state_name)
 
-    rows = cursor.fetchall()
-    if not rows:
-        print(f"No record found matching '{state_name}' (case-sensitive)")
-    else:
-        for row in rows:
-            print(row)
+    cursor.execute(query)
+
+    for row in cursor.fetchall():
+        print(row)
 
     cursor.close()
     db.close()
