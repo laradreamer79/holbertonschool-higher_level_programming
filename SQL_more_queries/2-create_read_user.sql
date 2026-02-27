@@ -1,9 +1,7 @@
--- List cities of California (no JOIN)
-SELECT id, name
-FROM cities
-WHERE state_id = (
-  SELECT id
-  FROM states
-  WHERE name = 'California'
-)
-ORDER BY id;
+-- Create database and read user
+CREATE DATABASE IF NOT EXISTS `hbtn_0d_2`;
+
+CREATE USER IF NOT EXISTS 'user_0d_2'@'localhost'
+IDENTIFIED BY 'user_0d_2_pwd';
+
+GRANT SELECT ON `hbtn_0d_2`.* TO 'user_0d_2'@'localhost';
